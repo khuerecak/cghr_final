@@ -1,0 +1,20 @@
+{
+  "name": "final",
+  "version": "1.0.0",
+  "description": "Final Project for INF 653",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "dev": "nodemon server"
+  },
+  "author": "Crystal Huereca-Retana",
+  "license": "ISC",
+  "dependencies": {
+    "date-fns": "^2.30.0",
+    "express": "^4.18.2",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
