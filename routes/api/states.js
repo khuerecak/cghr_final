@@ -4,11 +4,27 @@ const statesController = require('../../controllers/statesController');
 
 router.route('/')
     .get(statesController.getAllStates)
-   // .post(verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Editor), statesController.createNewEmployee)
-   // .put(verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Editor), statesController.updateEmployee)
-    //.delete(verifyRoles(ROLES_LIST.Admin), statesController.deleteEmployee);
 
 router.route('/:state')
     .get(statesController.getState);
+
+router.route('/:code/capital')
+    .get(statesController.getStateCapital);
+
+router.route('/:code/nickname')
+    .get(statesController.getNickname);
+
+router.route('/:code/population')
+    .get(statesController.getPopulation);
+
+router.route('/:code/admission')
+    .get(statesController.getAdmission);
+
+router.route('/:code/funfact')
+    .get(statesController.getFunFacts)
+    .post(statesController.createFunFact)
+    .delete(statesController.deleteFunFact)
+    .patch(statesController.updateFunFact);
+
 
 module.exports = router;
