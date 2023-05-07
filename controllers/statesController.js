@@ -1,7 +1,5 @@
 
 const State = require('../model/State');
-//mongodb+srv://scott73carlson:EmmntYY4@cluster0.wteysmi.mongodb.net/StatesDB?retryWrites=true&w=majority
-
 const data = {
     states: require('../model/statesData.json'),
     setStates: function (data) { this.states = data }
@@ -19,24 +17,19 @@ const getAllStates = async (req, res) => {
     } else {
         for (let i = 0; i < data.states.length; i++) {
             const code = data.states[i].code;
-            // Search for a corresponding state in MongoDB by stateCode
-            const mongoLookup = await State.findOne({ stateCode: code });
 
-            // If a matching state is found in MongoDB, add its funfacts to the corresponding state in the JSON file
+            const mongoLookup = await State.findOne({ stateCode: code });
             if (mongoLookup) {
                 var updateFacts = mongoLookup.funfacts;
-                //console.log(updateFacts);
                 data.states[i] = {
                     ...data.states[i],
                     funfacts: mongoLookup.funfacts
                   };
             }
         }
-
         return res.json(data.states);
     }
     
-    //need to add check for funfacts from monogoDB
 }
 
 const getStateCapital = (req, res) => {
@@ -52,7 +45,6 @@ const getStateCapital = (req, res) => {
 }
 
 const getState = async (req, res) => {
-    //funfact lookup
     let code = req.params.state;
     code = code.toUpperCase();
     for(x = 0; x < data.states.length; x++) {
@@ -136,7 +128,6 @@ const getFunFacts = async (req, res) => {
 
 
 const createFunFact = async (req, res) => {
-    //Need to do a check if stateCode is a valid stateCode before submitting - this check is against the .json file
     for(x = 0; x < data.states.length; x++) {
         let code = req.params.code;
         code = code.toUpperCase();
@@ -218,7 +209,6 @@ const deleteFunFact = async (req, res) => {
 }
 
 const updateFunFact = async (req, res) => {
-    //Need to do a check if stateCode is a valid stateCode before submitting - this check is against the .json file
     for(x = 0; x < data.states.length; x++) {
         let code = req.params.code;
         code = code.toUpperCase();
@@ -243,11 +233,6 @@ const updateFunFact = async (req, res) => {
                     var message = ("No Fun Facts found for " + updatedState);
                     return res.status(400).json({ 'message': message });
                 }
-                //if (index >= funfacts.length || index < 1) {
-                //    var updatedState = result[0].state;
-                //    var message = ("No Fun Fact found at that index for " + updatedState);
-                //    return res.status(400).json({ 'message': message });
-                //}
                 funfacts[index-1] = req.body.funfact;
                 if(!funfacts[index-1]) {
                     var updatedState = result[0].state;
@@ -267,7 +252,6 @@ const updateFunFact = async (req, res) => {
             }
         }
     } 
-    //need to update for dynamic state
     return res.json({"message":"No Fun Facts found for Arizona"});
 }
 
