@@ -3,58 +3,47 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const cors = require('cors');
-const corsOptions = require('./config/corsOptions');
-//const { logger } = require('./middleware/logEvents');
+const {logger} = require('./middleware/logEvents');
 const errorHandler = require('./middleware/errorHandler');
+const corsOptions = require('./config/corsOptions');
 const mongoose = require('mongoose');
 const connectDB = require('./config/dbConn');
-const cookieParser = require('cookie-parser');
 const PORT = process.env.PORT || 3500;
 
-// Connect to Mongo DB before anything else 
+//Connect to MongoDB
 connectDB();
 
-//custom middleware logger
-//app.use((req, res, next) => {
-//    console.log(`${req.method} ${req.path}`)
-//});
+//Custom middleware logger, next is required since it is custom.
+app.use(logger);
 
-// Cross Origin Resource Sharing (CORS)
-app.use(cors());
+//Cross origin resource sharing
+app.use(cors(corsOptions));
 
-//built-in middleware to handle urlencoded data
-app.use(express.urlencoded({ extended: false}));
+app.use(express.urlencoded({extended: false}));
 
-//built-in middleware for json
 app.use(express.json());
 
-//middleware for cookies
-app.use(cookieParser());
-
-//middleware to serve static files
 app.use(express.static(path.join(__dirname, '/public')));
-
-// routes
 app.use('/', require('./routes/root'));
 app.use('/states', require('./routes/api/states'));
 
-app.all('*', (req, res) => {
+//Route handlers
+app.get('*', (req, res) =>{
     res.status(404);
-    if (req.accepts('html')) {
+    if(req.accepts('html')){
         res.sendFile(path.join(__dirname, 'views', '404.html'));
-    } else if (req.accepts('json')) {
-        res.json({ "error": "404 Not Found" });
+    } else if(req.accepts('json')){
+        res.json({error: "404 Not Found"});
     } else {
         res.type('txt').send("404 Not Found");
     }
-});
+})
 
 app.use(errorHandler);
 
-mongoose.connection.once('open', () => {
+mongoose.connection.once('open', () =>{
     console.log('Connected to MongoDB');
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-})
-
-
-
+    app.listen(PORT, () =>{
+        console.log(`Server running on port ${PORT}`);
+    });
+});
