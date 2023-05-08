@@ -1,4 +1,5 @@
 const allowedOrigins = [
+    'https://cghrfinal.khuerecak.repl.co',
     'https://legend-tarry-basil.glitch.me',
     'https://dazzling-snickerdoodle-777101.netlify.app',
     'http://127.0.0.1:5500',
