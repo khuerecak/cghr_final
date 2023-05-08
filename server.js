@@ -20,7 +20,9 @@ connectDB();
 //});
 
 // Cross Origin Resource Sharing (CORS)
-app.use(cors());
+app.use(cors({
+    origini: '*'
+}));
 
 //built-in middleware to handle urlencoded data
 app.use(express.urlencoded({ extended: false}));
