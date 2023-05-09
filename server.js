@@ -9,7 +9,7 @@ const corsOptions = require('./config/corsOptions');
 const mongoose = require('mongoose');
 const connectDB = require('./config/dbConn');
 const cookieParser = require('cookie-parser');
-const PORT = process.env.PORT || 3500;
+const PORT = process.env.PORT || 3000;
 
 //Connect to MongoDB
 connectDB();
