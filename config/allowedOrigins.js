@@ -3,7 +3,7 @@ const allowedOrigins = [
     'http://localhost:3500',
     'https://cghrfinal.khuerecak.repl.co',
     'https://legend-tarry-basil.glitch.me',
-    'https://dazzling-snickerdoodle-777101.netlify.app'
+    'https://dazzling-snickerdoodle-777101.netlify.app/'
    
 ];
 
