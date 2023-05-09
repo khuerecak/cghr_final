@@ -24,8 +24,9 @@ router.route('/:code/admission')
 router.route('/:code/funfact')
     .get(funfactsController.getFunFacts)
     .post(funfactsController.createFunFact)
-    .delete(funfactsController.deleteFunFact)
-    .patch(funfactsController.updateFunFact);
+    .patch(funfactsController.updateFunFact)
+    .delete(funfactsController.deleteFunFact);
+    
 
 
 module.exports = router;

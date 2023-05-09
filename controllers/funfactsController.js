@@ -156,6 +156,7 @@ const updateFunFact = async (req, res) => {
     return res.json({"message":"No Fun Facts found for Arizona"});
 }
 
+
 module.exports = { 
     createFunFact,
     getFunFacts,

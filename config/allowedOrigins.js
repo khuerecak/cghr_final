@@ -4,7 +4,6 @@ const allowedOrigins = [
     'http://localhost:3000',
     'https://legend-tarry-basil.glitch.me',
     'https://dazzling-snickerdoodle-777101.netlify.app/'
-   
 ];
 
 module.exports = allowedOrigins;

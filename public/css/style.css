@@ -4,6 +4,7 @@
     box-sizing: border-box;
 }
 
+
 body {
     font-size: 36px;
     min-height: 100vh;
@@ -11,4 +12,5 @@ body {
     background-color: #000;
     display: grid;
     place-content: center;
+    
 }

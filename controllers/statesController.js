@@ -1,7 +1,7 @@
 const State = require('../model/State');
 const data = {
-    states: require('../model/statesData.json'),
-    setStates: function (data) { this.states = data }
+                 states: require('../model/statesData.json'),
+                 setStates: function (data) { this.states = data }
 }
 
 const getAllStates = async (req, res) => {
@@ -100,8 +100,6 @@ const getAdmission = (req, res) => {
     } 
     return res.json({"message":"Invalid state abbreviation parameter"});
 }
-
-
 
 module.exports = { 
     getAllStates,
