@@ -17,7 +17,7 @@ connectDB();
 app.use(logger);
 
 //Cross origin resource sharing
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.use(express.urlencoded({extended: false}));
 
