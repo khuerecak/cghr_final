@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const statesController = require('../../controllers/statesController');
+const funfactsController = require('../../controllers/funfactsController');
 
 router.route('/')
     .get(statesController.getAllStates)
@@ -21,10 +22,10 @@ router.route('/:code/admission')
     .get(statesController.getAdmission);
 
 router.route('/:code/funfact')
-    .get(statesController.getFunFacts)
-    .post(statesController.createFunFact)
-    .delete(statesController.deleteFunFact)
-    .patch(statesController.updateFunFact);
+    .get(funfactsController.getFunFacts)
+    .post(funfactsController.createFunFact)
+    .delete(funfactsController.deleteFunFact)
+    .patch(funfactsController.updateFunFact);
 
 
 module.exports = router;
