@@ -17,11 +17,13 @@ connectDB();
 app.use(logger);
 
 //Cross origin resource sharing
-app.use(cors(corsOptions));
+app.use(cors({origin: '*'}));
 
 app.use(express.urlencoded({extended: false}));
 
 app.use(express.json());
+
+app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, '/public')));
 app.use('/', require('./routes/root'));
